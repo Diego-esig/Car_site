@@ -1,0 +1,11 @@
+<!--https://www.youtube.com/watch?v=VOddmV4Xl1g&ab_channel=DennisIvy-->
+
+{%extends 'shop/base.html'%}
+
+{% block content %}
+    <form action="" method="post">
+    {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+{% endblock %}
