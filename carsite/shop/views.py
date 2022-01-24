@@ -17,7 +17,7 @@ def ajout_voiture(request):
         form = ProduitForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('shop/home.html')
+            return redirect('home')
     else:
         context = {'form': form}
         return render(request, 'shop/ModelForm.html', context)
