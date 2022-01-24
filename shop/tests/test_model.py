@@ -1,3 +1,4 @@
+from django.core.exceptions import ValidationError
 from django.test import TestCase
 from shop.models import *
 
@@ -14,12 +15,13 @@ class TestModelsProduit(TestCase):
     def test_hasattr_modele(self):
         self.assertTrue(hasattr(Produit(), 'modele'))
 
-    # def test_attribute_modele_saved(self):
-    #     Produit.objects.create(title = 'test', )
+    def test_attribute_modele_saved(self):
+        Produit.objects.create(modele = 'supra')
+        self.assertEqual(Produit.modele, 'supra')
 
-    def test_empty_modele_should_be_accepted(self):
-        a = Produit(marque='toyota', modele=None)
-        try:
-            a.full_clean()
-        except ValidationError:
-            self.fail("modele should accept blank values.")
+    # def test_empty_modele_should_be_accepted(self):
+    #     a = Produit(marque='toyota', modele=None)
+    #     try:
+    #         a.full_clean()
+    #     except ValidationError:
+    #         self.fail("modele should accept blank values.")
