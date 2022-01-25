@@ -12,14 +12,11 @@ def home(request):
 
 # def home()
 def ajout_voiture(request):
-    form = ProduitForm()
-    if request.method == 'POST':
-        form = ProduitForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('home')
-    else:
-        context = {'form': form}
-        return render(request, 'shop/ModelForm.html', context)
+    form = ProduitForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('home')
+
+    return render(request, 'shop/ModelForm.html', {'form' : form})
 
 
