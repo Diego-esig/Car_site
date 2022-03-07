@@ -13,7 +13,7 @@
                         <div class="card-title">{{ p.marque }}</div>
                         <div id="prix" class="card-text">{{ p.prix }}</div>CHF
                         <p style="display: none">{{ p.description }}</p>
-{#                                  ! Gonzalo !  Je n'arrivais pas a récuper les donnée via Js                                 #}
+{#                                  ! Gonzalo !  Je n'arrivais pas à récuper les donnée via Js                                 #}
                     </div>
                 </div>
             </div>
@@ -26,7 +26,7 @@
      </form>
     {% endif %}
 
-
+{# Insipirer de l'idée des collapse dans bootstrap https://www.w3schools.com/bootstrap5/bootstrap_collapse.php#}
     <script>
     produits = document.getElementsByClassName("produits");
     for (let prod of produits)
@@ -36,7 +36,7 @@
             let parent = e.target.parentElement.parentElement
             if (parent.getElementsByClassName("desc").length === 0 )
             {
-                var div = document.createElement("div");
+                let div = document.createElement("div");
                 div.className = "desc card "
                 div.textContent = parent.getElementsByTagName("p")[0].textContent
                 parent.appendChild(div)
