@@ -4,18 +4,16 @@
 
 
 {% block content %}
-    <div class="row">
+    <div id ="test" class="row">
         {% for p in produits %}
-            <div class="col-md-3 mt-3">
+            <div class="produits col-md-3 mt-3">
                 <div class="card">
-                    <img src="{{ p.image }}" class="card-img-top">
+                    <img class="img-prod" src="{{ p.image }}" class="card-img-top">
                     <div class="card-body">
-                        <div class="card-title">
-                            {{ p.marque }}
-                        </div>
-                        <div class="card-text">
-                            {{ p.prix }}  CHF
-                        </div>
+                        <div class="card-title">{{ p.marque }}</div>
+                        <div id="prix" class="card-text">{{ p.prix }}</div>CHF
+                        <p style="display: none">{{ p.description }}</p>
+{#                                  ! Gonzalo !  Je n'arrivais pas a récuper les donnée via Js                                 #}
                     </div>
                 </div>
             </div>
@@ -27,5 +25,28 @@
         <button class="btn btn-primary mt-5" type="submit"> + add new car</button>
      </form>
     {% endif %}
+
+
+    <script>
+    produits = document.getElementsByClassName("produits");
+    for (let prod of produits)
+    {
+        prod.getElementsByClassName("img-prod")[0].addEventListener("click",function(e){
+            {#console.log(e.target.parentElement.parentElement)#}
+            let parent = e.target.parentElement.parentElement
+            if (parent.getElementsByClassName("desc").length === 0 )
+            {
+                var div = document.createElement("div");
+                div.className = "desc card "
+                div.textContent = parent.getElementsByTagName("p")[0].textContent
+                parent.appendChild(div)
+            }
+            else
+            {
+                parent.removeChild(parent.lastChild)
+            }
+        })
+    }
+    </script>
 
 {% endblock %}
